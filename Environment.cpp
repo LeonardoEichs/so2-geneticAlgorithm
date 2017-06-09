@@ -14,7 +14,7 @@ void printCromossome(vector<bool> cromossome) {
   cout << endl;
 }
 
-Environment::Environment(int pop_size, int max_gen, double cross_rate, double mut_rate) {
+Environment::Environment(int pop_size, int max_gen, int max_rep, double cross_rate, double mut_rate) {
   population_size = pop_size;
   max_generations = max_gen;
   generation = 0;
@@ -22,7 +22,7 @@ Environment::Environment(int pop_size, int max_gen, double cross_rate, double mu
   mut_rate = mutation_rate;
   best_score = 0;
   best_repetition = 0;
-  max_repetitions = 100;
+  max_repetitions = max_rep;
   for (int i = 0; i < population_size; i++) {
     population.push_back(Individual());
   }
@@ -77,14 +77,14 @@ void Environment::step() {
   //
   double random;
   while (next_generation.size() < population_size) {
-    Individual selected = population[tournament()];
+    selected = population[tournament()];
     random = static_cast <double> (rand()) / static_cast <double> (RAND_MAX);
     if (random <= crossover_rate) {
       Individual selected2 = population[tournament()];
-      vector<vector<bool> > offsprings = selected.crossover(selected2.cromossome);
-      Individual new_individual1 = Individual();
+      offsprings = selected.crossover(selected2.cromossome);
+      new_individual1 = Individual();
       new_individual1.cromossome = offsprings[0];
-      Individual new_individual2 = Individual();
+      new_individual2 = Individual();
       new_individual2.cromossome = offsprings[1];
       next_generation.push_back(_mutate(new_individual1));
       next_generation.push_back(_mutate(new_individual2));
@@ -119,7 +119,6 @@ int Environment::tournament() {
   for (int i = 0; i < population_size; i++) {
     num_high += static_cast <double> (population[i].fitness_score)/static_cast <double> (total_score);
     if (random >= num_low && random <= num_high) {
-      //printCromossome(population[i].cromossome);
       return i;
     }
     num_low = num_high;

@@ -7,8 +7,16 @@
 
 using namespace std;
 
+/*
+For now the specifics of the problem such as the size of the cromossome,
+the evaluation function and the normalization function must be specified in
+this class but for future implementations the plan is to change the code so that
+the user only need to change the main file.
+*/
+
 #define CROMOSSOME_SIZE 22
 
+// Auxiliary function to convert a binary array to a decimal value
 double bin_to_int(vector<bool> bit_seq) {
   double num = 0;
   int j;
@@ -19,6 +27,8 @@ double bin_to_int(vector<bool> bit_seq) {
   return num;
 }
 
+// Constructor function assigns a random cromossome to the individual and
+// evaluates it
 Individual::Individual() {
   bitset<CROMOSSOME_SIZE> random_binary(rand());
   for (int i = 0; i < random_binary.size(); i++)
@@ -26,25 +36,25 @@ Individual::Individual() {
   evaluate();
 }
 
+// IMPORTANT FUNCTION FOR THE PROBLEM
+// In this function is specified how a cromossome is evaluated and it's value
+// will be essential in the execution of the genetic algorithm
 void Individual::evaluate() {
-  //
-  // normalize()
-  //fitness_score = pow(bin_to_int(cromossome), 2);
   double x = normalize();
   fitness_score = x * sin(10*M_PI*x) + 1.0;
 }
 
+// This method contain the normalization function for a cromossome
 double Individual::normalize() {
-  //
-  //
   return -1 + (2+1)*(bin_to_int(cromossome)/(pow(2, 22) - 1));
 }
 
+// Invert the value contained in that position of the cromossome
 void Individual::mutate(int position) {
-  // Invert the value contained in that position of the cromossome
   cromossome[position] = !cromossome[position];
 }
 
+// This function implements the crossover operation
 vector<vector<bool> > Individual::crossover(vector<bool> cromossome2) {
   // Can't get the first and last position
   int pivot_point = rand() % (cromossome.size() - 2) + 1;
