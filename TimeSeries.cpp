@@ -22,7 +22,7 @@ Very useful method used to transform the raw data from the time series
 to a new file in which the Neural Network can use to train
 STILL NEEDS TO INSERT THE FIRST LINE FOR THE DOCUMENT
 */
-void TimeSeries::organizeFile(int num_inp, int num_out) {
+void TimeSeries::organizeFile(string seriesName, int num_inp, int num_out) {
     string line;
 
     ifstream file_raw;

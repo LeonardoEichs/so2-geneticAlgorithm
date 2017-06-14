@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "fann.h"
 
 int FANN_API test_callback(struct fann *ann, struct fann_train_data *train,
-	unsigned int max_epochs, unsigned int epochs_between_reports, 
+	unsigned int max_epochs, unsigned int epochs_between_reports,
 	float desired_error, unsigned int epochs)
 {
 	printf("Epochs     %8d. MSE: %.5f. Desired-MSE: %.5f\n", epochs, fann_get_MSE(ann), desired_error);
@@ -62,7 +62,7 @@ int main()
 	fann_set_training_algorithm(ann, FANN_TRAIN_RPROP);
 
 	fann_init_weights(ann, data);
-	
+
 	printf("Training network.\n");
 	fann_train_on_data(ann, data, max_epochs, epochs_between_reports, desired_error);
 

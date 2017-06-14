@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
             return 0;
         }
         TimeSeries::createFile(timeSerie);
-        TimeSeries::organizeFile(4, 1);
+        TimeSeries::organizeFile(timeSerie, 30, 1);
         break;
       case 'g':
       {
