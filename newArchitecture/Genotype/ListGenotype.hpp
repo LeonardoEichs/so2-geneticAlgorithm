@@ -11,7 +11,11 @@ class ListGenotype : public Genotype {
   protected:
     vector<T> listGenotype;
   public:
+    virtual void init(int n) = 0;
     int size() {  return listGenotype.size(); }
+    vector<T> getGenotype() { return listGenotype;  }
+    T at(int i) { return listGenotype.at(i);  }
+    void set(int i, T newValue) { this->listGenotype.at(i) = newValue;  }
 };
 
 #endif

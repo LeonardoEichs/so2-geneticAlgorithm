@@ -1,5 +1,6 @@
 #include "BooleanGenotype.hpp"
 #include <vector>
+#include <iostream>
 #include <stdlib.h>     /* srand, rand */
 
 using namespace std;
@@ -12,4 +13,12 @@ void BooleanGenotype::init(int n) {
     bool random = rand()%2;
     listGenotype.push_back(random);
   }
+}
+
+void BooleanGenotype::printGenotype() {
+  int size = this->size();
+  for(int i = 0; i < size; i++) {
+    cout << this->at(i);
+  }
+  cout << endl;
 }

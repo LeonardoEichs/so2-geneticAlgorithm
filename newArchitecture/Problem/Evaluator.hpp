@@ -4,9 +4,9 @@
 #include "../Objectives.hpp"
 
 template<typename T, typename P>
-class Creator {
+class Evaluator {
   public:
-    Objectives<T> evaluate(P phenotype) = 0;
+    virtual Objectives<T> evaluate(P phenotype) = 0;
 };
 
 #endif

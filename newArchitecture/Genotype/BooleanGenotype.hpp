@@ -10,6 +10,7 @@ class BooleanGenotype : public ListGenotype<bool> {
   public:
     BooleanGenotype();
     void init(int n);
+    void printGenotype();
 };
 
 #endif
