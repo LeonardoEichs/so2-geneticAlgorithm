@@ -1,12 +1,13 @@
+/**
+    Trabalho Sistemas Operacionais II
+    @author Leonardo Vailatti Eichstaedt
+    @version 1.1 25/07/17
+*/
+
 #ifndef OPTIMIZERMEDIATOR_H
 #define OPTIMIZERMEDIATOR_H
 
 #include "../Config.hpp"
-#include "Population.hpp"
-#include "Optimizer.hpp"
-#include "IndividualCompleter.hpp"
-#include "IterativeOptimizer.hpp"
-#include <iostream>
 
 template<typename G, typename T, typename P>
 class OptimizerMediator : public Optimizer<G, T, P> {
@@ -23,13 +24,20 @@ class OptimizerMediator : public Optimizer<G, T, P> {
       : iterativeOptimizer(iterativeOptimizer), population(population), completer(completer), maxIteration(maxIteration) {}
 
     T optimize() {
+      T result;
       this->iterativeOptimizer.initialize();
+      cout << " Creating Population..." << endl;
       nextIteration();
       while ((this->iteration < this->maxIteration) && this->repetition != MAX_BEST_REPETITIONS) {
         this->iterativeOptimizer.next();
+        cout << "----------------------------" << endl;
         nextIteration();
+        cout << "Repetition of Best Individual: " << this->repetition << endl;
+        cout << "----------------------------" << endl;
+
       }
-      return this->population.bestIndividualValue();
+      result = population.bestIndividualValue();
+      return result;
 
     }
 
@@ -38,6 +46,7 @@ class OptimizerMediator : public Optimizer<G, T, P> {
     }
 
     void nextIteration() {
+      cout << "Generation:  " << getIteration() << endl;
       vector<Individual<G, T, P>> pop = this->population.getPopulation();
       this->completer.complete(pop);
       this->population.setPopulation(pop);
@@ -45,7 +54,7 @@ class OptimizerMediator : public Optimizer<G, T, P> {
         this->repetition++;
       else
         this->currentBest = this->population.bestIndividualValue();
-      cout << this->population.bestIndividualValue() << endl;
+      cout << "Best Individual Value: " << this->population.bestIndividualValue() << endl;
       this->iteration += 1;
     }
 };

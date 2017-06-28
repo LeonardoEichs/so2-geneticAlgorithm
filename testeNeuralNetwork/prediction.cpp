@@ -56,14 +56,3 @@ int main(int argc, char **argv)
     }
     return 0;
 }
-
-/*
-fann_type *tmpOutput = net.run(previousOutput);
-
-// copy element by element from output to new array.
-fann_type newInput[data.num_input_train_data()];
-for (unsigned int j = 0; j < data.num_input_train_data(); j++) {
-    newInput[j] = tmpOutput[j];
-}
-previousOutput = newInput; // feedback loop.
-*/

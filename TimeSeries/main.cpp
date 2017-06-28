@@ -1,11 +1,14 @@
+/**
+    Trabalho Sistemas Operacionais II
+    @author Leonardo Vailatti Eichstaedt
+    @version 1.1 25/07/17
+*/
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <unistd.h>
 #include <iostream>
-#include "Individual.hpp"
-#include "Environment.hpp"
 #include "TimeSeries.hpp"
 
 #define H1 "000050c58075b2700490226529d4620000000000000000000000000000ffffffffffffffff"
@@ -44,6 +47,8 @@ int main(int argc, char* argv[]) {
         cout << "6 -> Lamp power consumption: " << LPC << endl;
         cout << "7 -> Room Lighting: " << RL << endl;
         cout << "8 -> Movement: " << M << endl;
+        cout <<  endl;
+        cout <<  endl;
         return 0;
       case 's':
         switch(atoi(optarg)) {
@@ -78,16 +83,6 @@ int main(int argc, char* argv[]) {
         TimeSeries::createFile(timeSerie);
         TimeSeries::organizeFile(timeSerie, 30, 1);
         break;
-      case 'g':
-      {
-        srand (time(NULL));
-        Environment env = Environment(1000, 10000, 100, 0.8, 0.3);
-        env.run();
-        cout << "-----------------------" << endl;
-        cout << env.best().fitness_score << endl;
-        cout << env.generation << endl;
-        break;
-      }
       case '?':
         if (optopt == 's')
           fprintf (stderr, "Option -%c requires an argument.\n", optopt);

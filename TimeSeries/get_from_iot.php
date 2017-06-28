@@ -29,7 +29,7 @@ $data = explode("[[", $response);
 $data = explode("],[", $data[1]);
 $data = str_replace("]]}]}]}", "", $data);
 foreach($data as $item) {
-    echo($item);
+    echo(explode(",", $item)[1]);
     echo("\n");
 }
 ?>

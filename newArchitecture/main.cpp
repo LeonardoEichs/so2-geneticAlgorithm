@@ -1,24 +1,11 @@
-#include "Genotype/SelectGenotype.hpp"
-#include "Genotype/IntegerGenotype.hpp"
-#include "Genotype/BooleanGenotype.hpp"
-#include "Genotype/DoubleGenotype.hpp"
-#include "Genotype/BooleanMapGenotype.hpp"
-#include "Optimizer/Population.hpp"
-#include "Optimizer/SequentialIndividualCompleter.hpp"
-#include "Operator/Mutate/MutateBoolean.hpp"
-#include "Operator/Crossover/CrossoverBooleanRate.hpp"
-#include "Optimizer/EA/SelectorDefault.hpp"
-#include "Optimizer/EA/MatingCrossoverMutate.hpp"
-#include "Optimizer/EA/EvolutionaryAlgorithm.hpp"
+/**
+    Trabalho Sistemas Operacionais II
+    @author Leonardo Vailatti Eichstaedt
+    @version 1.1 25/07/17
+*/
+
 #include "Optimizer/OptimizerMediator.hpp"
-#include "Individual.hpp"
-#include "DefaultIndividualFactory.hpp"
-#include "Objectives.hpp"
-#include "Objective.hpp"
 #include "Config.hpp"
-#include "Problem/Test/TestCreator.hpp"
-#include "Problem/Test/TestDecoder.hpp"
-#include "Problem/Test/TestEvaluator.hpp"
 
 using namespace std;
 
@@ -42,5 +29,5 @@ int main() {
   double result = opt.optimize();
   cout << result << endl;
 
-  return 1;
+  return 0;
 }

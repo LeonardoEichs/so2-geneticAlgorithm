@@ -1,3 +1,9 @@
+/**
+    Trabalho Sistemas Operacionais II
+    @author Leonardo Vailatti Eichstaedt
+    @version 1.1 25/07/17
+*/
+
 #ifndef OBJECTIVE_H
 #define OBJECTIVE_H
 
